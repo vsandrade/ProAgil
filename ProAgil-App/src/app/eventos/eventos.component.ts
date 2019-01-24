@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventosComponent implements OnInit {
 
-  _filtroLista: string;
+  _filtroLista: string = '';
   get filtroLista(): string {
     return this._filtroLista;
   }
@@ -43,6 +43,7 @@ export class EventosComponent implements OnInit {
   getEventos() {
     this.http.get('http://localhost:5000/api/values').subscribe(response => {
       this.eventos = response;
+      this.eventosFiltrados = this.eventos;
       console.log(response);
     }, error => {
       console.log(error);
