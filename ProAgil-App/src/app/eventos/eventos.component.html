@@ -13,45 +13,72 @@
       <th>
         <button class="btn btn-outline-primary"
         (click)="alternarImagem()" >
-          Mostrar Imagem
+        <i class="{{mostrarImagem ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>        
+      </button>
+    </th>
+    <th>#</th>
+    <th>Tema</th>
+    <th>Local</th>
+    <th>Data</th>
+    <th>Qtd Pessoas</th>
+    <th>Lote</th>
+    <th>Opções</th>
+  </tr>
+</thead>  
+<tbody *ngIf="eventos && eventos.length">
+  <tr *ngFor="let evento of eventosFiltrados">
+    <td>
+      <img *ngIf="mostrarImagem"
+      src="http://localhost:5000/img/{{evento.imagemURL}}"
+      [style.width.px]="imagemLargura"
+      [style.margin.px]="imagemMargem">
+    </td>
+    <td>{{evento.id}}</td>
+    <td>{{evento.tema}}</td>
+    <td>{{evento.local}}</td>
+    <td>{{evento.dataEvento | DateTimeFormatPipe}}</td>
+    <td>{{evento.qtdPessoas}}</td>
+    <td>
+      <div *ngIf="!evento.lotes.length">
+        Não Informado
+      </div>
+      <div *ngIf="evento.lotes.length">
+        {{evento.lotes[0].nome | uppercase}}
+      </div>
+    </td>
+    <td>
+      <div class="btn-group">
+        <button class="btn btn-sm btn-success" 
+        tooltip="Editar" (click)="openModal(template)">
+          <i class="fa fa-edit"></i>
         </button>
-      </th>
-      <th>#</th>
-      <th>Tema</th>
-      <th>Local</th>
-      <th>Data</th>
-      <th>Qtd Pessoas</th>
-      <th>Lote</th>
-      <th>Opções</th>
-    </tr>
-  </thead>  
-  <tbody *ngIf="eventos && eventos.length">
-    <tr *ngFor="let evento of eventosFiltrados">
-      <td>
-        <img *ngIf="mostrarImagem"
-          src="http://localhost:5000/img/{{evento.imagemUrl}}"
-          [style.width.px]="imagemLargura"
-          [style.margin.px]="imagemMargem">
-      </td>
-      <td>{{evento.eventoId}}</td>
-      <td>{{evento.tema}}</td>
-      <td>{{evento.local}}</td>
-      <td>{{evento.dataEvento}}</td>
-      <td>{{evento.qtdPessoas}}</td>
-      <td>{{evento.lote | uppercase}}</td>
-      <td>
-        <button class="btn btn-success"></button>
-        <button class="btn btn-danger"></button>
-      </td>
-    </tr>
-  </tbody> 
-  <tfoot *ngIf="!eventos.length">
-    <tr>
-      <td colspan="7" class="text-center">
-        <h4>
-          Nenhum evento encontrado!
-        </h4>
-      </td>
-    </tr>
-  </tfoot> 
+        <button class="btn btn-sm btn-danger" tooltip="Excluir">
+          <i class="fa fa-eraser"></i>
+        </button>
+      </div>
+    </td>
+  </tr>
+</tbody> 
+<tfoot *ngIf="!eventos.length">
+  <tr>
+    <td colspan="7" class="text-center">
+      <h4>
+        Nenhum evento encontrado!
+      </h4>
+    </td>
+  </tr>
+</tfoot> 
 </table>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" 
+    aria-label="Close" (click)="modalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  This is a modal.
+</div>
+</ng-template>
