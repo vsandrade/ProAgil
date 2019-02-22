@@ -6,7 +6,14 @@ This is all of the files for our Course about Bootstrap 4.
 
 The Summary is:
 
-  AS SOON...
+  1. Introdução .NET Core
+  2. Asp.NET Core - API
+  3. Angular
+  4. Angular - Interpolação, Diretivas e Binding
+  5. .NET Core & EF Core - Organizar em Camadas
+  6. Angular - Organizando Projeto
+  7. Angular - Reactive Forms
+  
 
 If you want to see this link course, really in action [original site](https://www.udemy.com/angular-dotnetcore-efcore/).
 
