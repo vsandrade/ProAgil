@@ -51,6 +51,7 @@ export class EventosComponent implements OnInit {
   editarEvento(evento: Evento, template: any) {
     this.modoSalvar = 'put';
     this.openModal(template);
+    this.evento = evento;
     this.registerForm.patchValue(evento);
   }
 
@@ -80,7 +81,6 @@ export class EventosComponent implements OnInit {
 
   openModal(template: any) {
     this.registerForm.reset();
-    this.registerForm.get('dataEvento').setValue(new Date());
     template.show();
   }
 
