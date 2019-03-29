@@ -1,0 +1,235 @@
+<app-titulo [titulo]="titulo"></app-titulo>
+<form [formGroup]="registerForm">
+  <div class="row">
+    <div class="col-md-8">
+      <tabset>
+        <tab heading="Evento">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label>Tema</label>
+              <input type="text" class="form-control" [(ngModel)]="evento.tema"
+                [ngClass]="{'is-invalid': registerForm.get('tema').errors && registerForm.get('tema').touched}"
+                formControlName="tema" placeholder="Insira o Tema">
+              <div *ngIf="registerForm.get('tema').hasError('required')
+              && registerForm.get('tema').touched" class="invalid-feedback">
+                Tema é obrigatório.
+              </div>
+              <div *ngIf="registerForm.get('tema').hasError('minlength')
+            && registerForm.get('tema').touched" class="invalid-feedback">
+                Tema deve ter no mínimo 4 Caracters.
+              </div>
+              <div *ngIf="registerForm.get('tema').hasError('maxlength')
+          && registerForm.get('tema').touched" class="invalid-feedback">
+                Tema deve ter no máximo 50 Caracters.
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <label>Local</label>
+              <input type="text" class="form-control" [(ngModel)]="evento.local" [ngClass]="{'is-invalid': registerForm.get('local').errors 
+              && registerForm.get('local').touched}" formControlName="local" placeholder="">
+              <div *ngIf="registerForm.get('local').hasError('required')
+              && registerForm.get('local').touched" class="invalid-feedback">
+                Local é obrigatório.
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Data e Hora</label>
+              <input type="text" class="form-control" [(ngModel)]="evento.dataEvento" bsDatepicker
+                value="{{evento.dataEvento | DateTimeFormatPipe}}" [(ngModel)]="dataEvento"
+                [bsConfig]="{ dateInputFormat : 'DD/MM/YYYY hh:mm' }" [ngClass]="{'is-invalid': registerForm.get('dataEvento').errors 
+            && registerForm.get('dataEvento').touched}" formControlName="dataEvento" placeholder="">
+              <div *ngIf="registerForm.get('dataEvento').hasError('required')
+            && registerForm.get('dataEvento').touched" class="invalid-feedback">
+                Data e hora é obrigatório.
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label>Qtd Pessoas</label>
+              <input type="text" [(ngModel)]="evento.qtdPessoas" [ngClass]="{'is-invalid': registerForm.get('qtdPessoas').errors 
+              && registerForm.get('qtdPessoas').touched}" class="form-control is-invalid" formControlName="qtdPessoas"
+                placeholder="">
+              <div *ngIf="registerForm.get('qtdPessoas').hasError('required')
+              && registerForm.get('qtdPessoas').touched" class="invalid-feedback">
+                Qtd Pessoas é obrigatório.
+              </div>
+              <div *ngIf="registerForm.get('qtdPessoas').hasError('max')
+            && registerForm.get('qtdPessoas').touched" class="invalid-feedback">
+                Qtd Pessoas deve ser menor que 120000.
+              </div>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label>Telefone</label>
+              <input type="text" mask="(000) 0000-0000" class="form-control" [(ngModel)]="evento.telefone" [ngClass]="{'is-invalid': registerForm.get('telefone').errors 
+            && registerForm.get('telefone').touched}" formControlName="telefone" placeholder="(000) 90000-0000">
+              <div *ngIf="registerForm.get('telefone').hasError('required')
+            && registerForm.get('telefone').touched" class="invalid-feedback">
+                Telefone é obrigatório.
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Email</label>
+              <input type="text" class="form-control" [(ngModel)]="evento.email" [ngClass]="{'is-invalid': registerForm.get('email').errors 
+            && registerForm.get('email').touched}" formControlName="email" placeholder="e-mail">
+              <div *ngIf="registerForm.get('email').hasError('required')
+            && registerForm.get('email').touched" class="invalid-feedback">
+                Email é obrigatório.
+              </div>
+              <div *ngIf="registerForm.get('email').hasError('email')
+          && registerForm.get('email').touched" class="invalid-feedback">
+                Deve ser um e-mail válido.
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Lotes">
+          <div>
+            <div formArrayName="lotes" *ngFor="let lote of lotes.controls; let i=index">
+              <fieldset [formGroupName]="i" class="form-group">
+                <legend class="d-flex justify-content-between capitalize">
+                  {{ lotes.get(i+'.nome').value === '' ?
+                    'Lotes' :
+                    lotes.get(i+'.nome').value
+                  }}
+                  <button class="btn btn-sm btn-warning mb-1" (click)="removerLote(i)">remove</button>
+                </legend>
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <label>Nome</label>
+                    <input type="text" class="form-control"
+                      [ngClass]="{'is-invalid': lotes.get(i+'.nome').errors && lotes.get(i+'.nome').touched}"
+                      formControlName="nome" placeholder="Lote">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Quantidade</label>
+                    <input type="text" class="form-control"
+                      [ngClass]="{'is-invalid': lotes.get(i+'.quantidade').errors && lotes.get(i+'.quantidade').touched}"
+                      formControlName="quantidade" placeholder="000">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Preço</label>
+                    <input type="text" currencyMask
+                      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+                      class="form-control"
+                      [ngClass]="{'is-invalid': lotes.get(i+'.preco').errors && lotes.get(i+'.preco').touched}"
+                      formControlName="preco" placeholder="R$ 0,00">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Data Início</label>
+                    <input type="text" class="form-control" formControlName="dataInicio" placeholder="01/01/2019">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Data Fim</label>
+                    <input type="text" class="form-control" formControlName="dataFim" placeholder="01/01/2019">
+                  </div>
+
+                </div>
+              </fieldset>
+            </div>
+            <button (click)="adicionarLote()" class="btn btn-outline-primary">
+              Adicionar Lote
+            </button>
+          </div>
+        </tab>
+        <tab heading="Redes Sociais">
+          <div formArrayName="redesSociais" *ngFor="let redeSocial of redesSociais.controls; let j=index">
+            <fieldset [formGroupName]="j" class="form-group">
+              <legend class="d-flex justify-content-between capitalize">
+                {{ redesSociais.get(j+'.nome').value == '' ?
+                    'Redes Sociais' :
+                    redesSociais.get(j+'.nome').value?.replace('fab fa-', '')
+                  }}
+                <button class="btn btn-sm btn-warning mb-1" (click)="removerRedeSocial(j)">remove</button>
+              </legend>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label>Nome</label>
+                  <select class="form-control"
+                    [ngClass]="{'is-invalid': redesSociais.get(j+'.nome').errors && redesSociais.get(j+'.nome').touched}"
+                    formControlName="nome">
+                    <option value="">Selecione</option>
+                    <option value="fab fa-youtube">Youtube</option>
+                    <option value="fab fa-instagram">Instagram</option>
+                    <option value="fab fa-facebook">Facebook</option>
+                    <option value="fab fa-twitter">Twitter</option>
+                    <option value="fab fa-google">Google</option>
+                    <option value="fab fa-linkedin">Linkedin</option>
+                    <option value="fab fa-pinterest">Pinterest</option>
+                    <option value="fab fa-whatsapp">Whatsapp</option>
+                    <option value="fab fa-telegram">Telegram</option>
+                    <option value="fab fa-skype">Skype</option>
+                    <option value="fab fa-vimeo">Vimeo</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-8">
+                  <label>Link</label>
+                  <input type="text" prefix="http://" mask=""
+                    [ngClass]="{'is-invalid': redesSociais.get(j+'.url').errors && redesSociais.get(j+'.url').touched}"
+                    formControlName="url" class="form-control" placeholder="URL">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <button (click)="adicionarRedeSocial()" class="btn btn-outline-primary">
+            Adicionar Rede Social
+          </button>
+        </tab>
+      </tabset>
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-end">
+          <!-- {{registerForm.value | json}} -->
+          <button [disabled]="!registerForm.valid" class="btn btn-success my-2" (click)="salvarEvento()">Salvar
+            Alterações</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-row">
+        <div class="form-group col-md-9">
+          <input type="file" #file (change)="onFileChange($event, $event.target.files)" class="form-control is-invalid"
+            formControlName="imagemURL" placeholder="" style="display: none">
+        </div>
+      </div>
+      <div class="card profile-card-2">
+        <div class="card-img-block">
+          <img [src]="imagemURL" class="img-fluid" (click)="file.click()" style="cursor: pointer; width: 350px;"
+            alt="Card image cap" />
+        </div>
+        <div class="card-body pt-3">
+          <h4>{{evento.tema}}</h4>
+          <p class="card-text">
+            <b>Local:</b> {{evento.local}}
+            <br>
+            <b>Data:</b> {{evento.dataEvento | DateTimeFormatPipe}}
+          </p>
+          <hr>
+          <p class="card-text">
+            <b>Contatos</b><br>
+            <small class="text-muted">Telefone: {{evento.telefone | mask: '(000) 00000-0000'}}</small>
+            <br>
+            <small class="text-muted">e-mail: {{evento.email}}</small>
+          </p>
+          <p class="card-text">
+            Capacidade:
+            <small class="text-muted">{{evento.qtdPessoas}}</small>
+          </p>
+          <div class="row">
+            <div class="icon-block col-md-8 iconesSociais">
+              <a href="{{redesSociais.get(l+'.url').value}}"
+                *ngFor="let redeSocial of redesSociais.controls; let l=index;" class="mr-3" target="_blank">
+                <i class="{{redesSociais.get(l+'.nome').value}}"></i>
+              </a>
+            </div>
+            <!--div class="col-md-4 d-flex justify-content-center">  
+              <a href="#" class="btn btn-outline-primary">Participar</a>
+            </div-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

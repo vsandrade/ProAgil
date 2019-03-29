@@ -23,8 +23,8 @@
     <ul *ngIf="loggedIn()" class="navbar-nav">
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
-          {{authService.decodedToken?.unique_name}}
+          aria-haspopup="true" aria-expanded="false" style="cursor: pointer; text-transform: capitalize;">
+          {{userName()}}
         </a>
         <div *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item">

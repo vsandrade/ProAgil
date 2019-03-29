@@ -36,7 +36,7 @@ export class EventosComponent implements OnInit {
   _filtroLista = '';
 
   constructor(
-      private eventoService: EventoService
+    private eventoService: EventoService
     , private modalService: BsModalService
     , private fb: FormBuilder
     , private localeService: BsLocaleService
@@ -135,7 +135,7 @@ export class EventosComponent implements OnInit {
 
       this.eventoService.postUpload(this.file, nomeArquivo[2])
         .subscribe(
-          () =>  {
+          () => {
             this.dataAtual = new Date().getMilliseconds().toString();
             this.getEventos();
           }
@@ -144,7 +144,7 @@ export class EventosComponent implements OnInit {
       this.evento.imagemURL = this.fileNameToUpdate;
       this.eventoService.postUpload(this.file, this.fileNameToUpdate)
         .subscribe(
-          () =>  {
+          () => {
             this.dataAtual = new Date().getMilliseconds().toString();
             this.getEventos();
           }
@@ -169,7 +169,7 @@ export class EventosComponent implements OnInit {
           }
         );
       } else {
-        this.evento = Object.assign({id: this.evento.id}, this.registerForm.value);
+        this.evento = Object.assign({ id: this.evento.id }, this.registerForm.value);
 
         this.uploadImagem();
 
@@ -187,14 +187,16 @@ export class EventosComponent implements OnInit {
   }
 
   getEventos() {
+    this.dataAtual = new Date().getMilliseconds().toString();
+
     this.eventoService.getAllEvento().subscribe(
-    (_eventos: Evento[]) => {
-      this.eventos = _eventos;
-      this.eventosFiltrados = this.eventos;
-      console.log(this.eventos);
-    }, error => {
-      this.toastr.error(`Erro ao tentar Carregar eventos: ${error}`);
-    });
+      (_eventos: Evento[]) => {
+        this.eventos = _eventos;
+        this.eventosFiltrados = this.eventos;
+        console.log(this.eventos);
+      }, error => {
+        this.toastr.error(`Erro ao tentar Carregar eventos: ${error}`);
+      });
   }
 
 }
