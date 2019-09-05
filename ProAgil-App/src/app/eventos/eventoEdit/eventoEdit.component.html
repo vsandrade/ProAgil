@@ -27,7 +27,7 @@
           <div class="form-row">
             <div class="form-group col-md-8">
               <label>Local</label>
-              <input type="text" class="form-control" [(ngModel)]="evento.local" [ngClass]="{'is-invalid': registerForm.get('local').errors 
+              <input type="text" class="form-control" [(ngModel)]="evento.local" [ngClass]="{'is-invalid': registerForm.get('local').errors
               && registerForm.get('local').touched}" formControlName="local" placeholder="">
               <div *ngIf="registerForm.get('local').hasError('required')
               && registerForm.get('local').touched" class="invalid-feedback">
@@ -37,8 +37,8 @@
             <div class="form-group col-md-4">
               <label>Data e Hora</label>
               <input type="text" class="form-control" [(ngModel)]="evento.dataEvento" bsDatepicker
-                value="{{evento.dataEvento | DateTimeFormatPipe}}" [(ngModel)]="dataEvento"
-                [bsConfig]="{ dateInputFormat : 'DD/MM/YYYY hh:mm' }" [ngClass]="{'is-invalid': registerForm.get('dataEvento').errors 
+                value="{{evento.dataEvento | DateTimeFormatPipe}}"
+                [bsConfig]="{ dateInputFormat : 'DD/MM/YYYY hh:mm' }" [ngClass]="{'is-invalid': registerForm.get('dataEvento').errors
             && registerForm.get('dataEvento').touched}" formControlName="dataEvento" placeholder="">
               <div *ngIf="registerForm.get('dataEvento').hasError('required')
             && registerForm.get('dataEvento').touched" class="invalid-feedback">
@@ -49,7 +49,7 @@
           <div class="form-row">
             <div class="form-group col-md-2">
               <label>Qtd Pessoas</label>
-              <input type="text" [(ngModel)]="evento.qtdPessoas" [ngClass]="{'is-invalid': registerForm.get('qtdPessoas').errors 
+              <input type="text" [(ngModel)]="evento.qtdPessoas" [ngClass]="{'is-invalid': registerForm.get('qtdPessoas').errors
               && registerForm.get('qtdPessoas').touched}" class="form-control is-invalid" formControlName="qtdPessoas"
                 placeholder="">
               <div *ngIf="registerForm.get('qtdPessoas').hasError('required')
@@ -64,7 +64,7 @@
 
             <div class="form-group col-md-4">
               <label>Telefone</label>
-              <input type="text" mask="(000) 0000-0000" class="form-control" [(ngModel)]="evento.telefone" [ngClass]="{'is-invalid': registerForm.get('telefone').errors 
+              <input type="text" mask="(000) 0000-0000" class="form-control" [(ngModel)]="evento.telefone" [ngClass]="{'is-invalid': registerForm.get('telefone').errors
             && registerForm.get('telefone').touched}" formControlName="telefone" placeholder="(000) 90000-0000">
               <div *ngIf="registerForm.get('telefone').hasError('required')
             && registerForm.get('telefone').touched" class="invalid-feedback">
@@ -73,7 +73,7 @@
             </div>
             <div class="form-group col-md-6">
               <label>Email</label>
-              <input type="text" class="form-control" [(ngModel)]="evento.email" [ngClass]="{'is-invalid': registerForm.get('email').errors 
+              <input type="text" class="form-control" [(ngModel)]="evento.email" [ngClass]="{'is-invalid': registerForm.get('email').errors
             && registerForm.get('email').touched}" formControlName="email" placeholder="e-mail">
               <div *ngIf="registerForm.get('email').hasError('required')
             && registerForm.get('email').touched" class="invalid-feedback">
@@ -224,7 +224,7 @@
                 <i class="{{redesSociais.get(l+'.nome').value}}"></i>
               </a>
             </div>
-            <!--div class="col-md-4 d-flex justify-content-center">  
+            <!--div class="col-md-4 d-flex justify-content-center">
               <a href="#" class="btn btn-outline-primary">Participar</a>
             </div-->
           </div>
