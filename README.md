@@ -19,6 +19,8 @@ The Summary is:
   11. Asp.NET Core Identity - (TOKEN e JWT)
   12. Angular + JWT + .NET Core Identity
   13. Eventos, Lotes e Redes Sociais
+  14. Deployment e Publish
+  15. SQL Server no Docker
   
 
 If you want to see this link course, really in action [original site](https://www.udemy.com/angular-dotnetcore-efcore/).
