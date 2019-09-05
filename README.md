@@ -1,6 +1,6 @@
 ## ProAgil Eventos
 
-# Seja Fullstack com Asp.NET Core 2, Angular 7 & EF Core 2 - [Course](https://www.udemy.com/angular-dotnetcore-efcore/).
+# Seja Fullstack com Asp.NET Core Web API, Angular 7 & EF Core - [Course](https://www.udemy.com/angular-dotnetcore-efcore/).
 
 This is all of the files for our Course about Bootstrap 4.
 
