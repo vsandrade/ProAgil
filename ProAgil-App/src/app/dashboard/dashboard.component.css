@@ -11,6 +11,13 @@ section {
   box-shadow: 7px 7px 30px -5px rgba(0,0,0,0.1);
   margin-bottom: 2rem;
 }
+.mbr-col-md-10 a {
+  text-decoration: none;
+  color: black;
+}
+.mbr-col-md-10 a:hover {
+  color: white;
+}
 
 .wrap:hover {
   background: linear-gradient(135deg,#6394ff 0%,#0a193b 100%);
@@ -53,4 +60,5 @@ p {
 }
 .display-6 {
   font-family: 'Source Sans Pro',sans-serif;
-  font-size: 1re}
+  font-size: 1re
+}
