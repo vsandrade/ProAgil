@@ -61,6 +61,16 @@ export class EventosComponent implements OnInit {
     }) 
   }
   
+  // Sugestão do Aluno Pablo Ferreira
+  filtrarClientes(filtrarPor: string): Cliente[] {     
+    filtrarPor = filtrarPor.toLocaleLowerCase();     
+    return this._cliente.filter(
+      cliente => cliente.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1                  
+      || cliente.nomeDelegacia.toLocaleLowerCase().indexOf(filtrarPor) !== -1                  
+      || cliente.status.toLocaleLowerCase().startsWith(filtrarPor)     
+    );   
+  }
+  
   editarEvento(evento: Evento, template: any) {
     this.modoSalvar = 'put';
     this.openModal(template);
