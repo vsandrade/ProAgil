@@ -2,7 +2,7 @@
 
 # Seja Fullstack com Asp.NET Core Web API, Angular 7 & EF Core - [Course](https://www.udemy.com/angular-dotnetcore-efcore/).
 
-This is all of the files for our Course about Bootstrap 4.
+This is all of the files for our Course about Angular, WebAPI and More
 
 The Summary is:
 
@@ -23,7 +23,7 @@ The Summary is:
   15. SQL Server no Docker
   
 
-If you want to see this link course, really in action [original site](https://www.udemy.com/angular-dotnetcore-efcore/).
+If you want to see this link course, really in action [original site](http://www.sejafullstack.com).
 
 ## Basic Setup
 
@@ -41,7 +41,7 @@ description: A Course about [Angular, .NET Core and EF Core]
 baseurl: "" # the subpath of your site, e.g. /blog/ or empty.
 
 # User settings
-There're not settings exactly, only files to guide you understand a little bit more about Bootstrap 4
+There're not settings exactly, only files to guide you understand a little bit more about Angular, WebAPI and More
 ```
 
 ## Questions
