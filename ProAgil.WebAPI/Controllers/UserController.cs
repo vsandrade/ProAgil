@@ -125,6 +125,15 @@ namespace ProAgil.WebAPI.Controllers
             Expires = DateTime.Now.AddDays(1),
             SigningCredentials = creds
         };
+        
+        // Sugestão do Aluno Renan Duarte
+        //  var tokenJwt = new SecurityTokenDescriptor
+        //    {
+        //        Subject = new ClaimsIdentity(userClaims),
+        //        Expires = DateTime.UtcNow.AddMinutes(15),
+        //        //Expires = DateTime.Now.AddMinutes(15),
+        //        SigningCredentials = creds
+        //    };
 
         var tokenHandler = new JwtSecurityTokenHandler();
 
