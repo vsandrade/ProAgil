@@ -32,6 +32,17 @@ export class AuthService {
     return this.http.post(`${this.baseURL}register`, model);
   }
 
+  // SUGESTÃO DO https://www.udemy.com/user/luiz-pires/
+  // loggedIn() {     
+  //   const token = localStorage.getItem('token');     
+  //   this.tokenOk = this.jwtHelper.isTokenExpired(token);
+  //   
+  //   if (this.tokenOk) {       
+  //     window.localStorage.removeItem('token');     
+  //   }     
+  //   return !this.tokenOk;   
+  // }
+  
   loggedIn() {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
